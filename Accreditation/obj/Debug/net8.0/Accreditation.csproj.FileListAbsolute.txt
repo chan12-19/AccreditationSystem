@@ -251,3 +251,4 @@ C:\AccreditationSystem\Accreditation\bin\Debug\net8.0\runtimes\win\lib\net7.0\Mi
 C:\AccreditationSystem\Accreditation\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
 C:\AccreditationSystem\Accreditation\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 C:\AccreditationSystem\Accreditation\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
+C:\AccreditationSystem\Accreditation\obj\Debug\net8.0\Accreditation.sourcelink.json

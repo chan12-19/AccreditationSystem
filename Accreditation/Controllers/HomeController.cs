@@ -8,6 +8,7 @@ namespace Accreditation.Controllers
 {
     public class HomeController : Controller
     {
+        CheckDB checkDB = new CheckDB();
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -17,6 +18,21 @@ namespace Accreditation.Controllers
 
         public IActionResult Index()
         {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Index([Bind]AccUser accountuser)
+        {
+            int res = checkDB.LoginCheck(accountuser);
+            if (res == 1)
+            {
+                TempData["msg"] = "You are welcome to Accreditation System";
+
+            }
+            else
+            {
+                TempData["msg"] = "Your user id or password is invalid!";
+            }
             return View();
         }
 
@@ -31,14 +47,6 @@ namespace Accreditation.Controllers
             return View(new AccreditationModels { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        //public void LoginOnClick(object sender, EventArgs e)
-        //{
-        //    string msg = string.Empty;
-        //    string strcon = "Data Source=.;uid=sa;pwd=1;database=Accreditation";
-        //    SqlConnection con = new SqlConnection(strcon);
-        //    SqlCommand com = new SqlCommand("CheckUserLogin", con);
-        //    com.CommandType = CommandType.StoredProcedure;
-        //    SqlParameter p1 = new SqlParameter("username",username.value)
-        //}
+        
     }
 }
