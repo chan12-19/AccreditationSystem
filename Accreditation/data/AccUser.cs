@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Accreditation.Models;
+namespace Accreditation.data;
 
 public partial class AccUser
 {
@@ -11,9 +11,11 @@ public partial class AccUser
 
     public string Email { get; set; } = null!;
 
-    public int? RoleId { get; set; }
+    public string Roles { get; set; } = null!;
 
     public DateTime CreatedDt { get; set; }
+
+    public string CreatedBy { get; set; } = null!;
 
     public string Syncoperation { get; set; } = null!;
 

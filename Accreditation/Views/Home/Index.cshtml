@@ -1,4 +1,8 @@
-﻿@model Accreditation.Models.AccUser
+﻿ @{
+    Layout = "_Layout";
+}
+
+@model Accreditation.Models.AccUser
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -10,14 +14,17 @@
           <form class="form-horizontal" asp-action="Index">
               <div class="form-group">
                   <label class="control-label">User ID</label>
-                    <input asp-for="UserId" class="form-control" type="text" />
+                    <input asp-for="UserId" class="form-control" type="text" required />
               </div>
                 <div class="form-group">
                     <label class="control-label">Password</label>
-                    <input asp-for="Password" class="form-control" type="pass" />
+                    <input asp-for="Password" class="form-control" type="pass" required />
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Login" />
+                    <input type="submit" value="Login"/>
+                </div>
+                <div class="form-group">
+                    @Html.ActionLink("Create an account","Register","Home",null,new{@class="page-scroll"})
                 </div>
           </form>
             <div class="col-sm-4"></div>
