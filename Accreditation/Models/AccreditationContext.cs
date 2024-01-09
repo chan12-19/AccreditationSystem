@@ -17,6 +17,10 @@ public partial class AccreditationContext : DbContext
 
     public virtual DbSet<AccUser> AccUsers { get; set; }
 
+    public virtual DbSet<Course> Courses { get; set; }
+
+    public virtual DbSet<Fileupload> Fileuploads { get; set; }
+
     public virtual DbSet<Role> Roles { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -52,9 +56,73 @@ public partial class AccreditationContext : DbContext
                 .HasColumnName("SYNCVERSION");
         });
 
+        modelBuilder.Entity<Course>(entity =>
+        {
+            entity.HasKey(e => e.CourseId).HasName("PK__COURSE__71CB31DB14F07AFD");
+
+            entity.ToTable("COURSE");
+
+            entity.Property(e => e.CourseId)
+                .HasMaxLength(5)
+                .HasColumnName("COURSE_ID");
+            entity.Property(e => e.ApproveDt)
+                .HasColumnType("datetime")
+                .HasColumnName("APPROVE_DT");
+            entity.Property(e => e.CourseDesc).HasColumnName("COURSE_DESC");
+            entity.Property(e => e.CourseName)
+                .HasMaxLength(200)
+                .HasColumnName("COURSE_NAME");
+            entity.Property(e => e.CreatedBy)
+                .HasMaxLength(200)
+                .HasColumnName("CREATED_BY");
+            entity.Property(e => e.CreatedDt)
+                .HasColumnType("datetime")
+                .HasColumnName("CREATED_DT");
+            entity.Property(e => e.ExpirtyDt)
+                .HasColumnType("datetime")
+                .HasColumnName("EXPIRTY_DT");
+            entity.Property(e => e.Faculty)
+                .HasMaxLength(200)
+                .HasColumnName("FACULTY");
+            entity.Property(e => e.Status)
+                .HasMaxLength(20)
+                .HasColumnName("STATUS");
+            entity.Property(e => e.Syncoperation)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .IsFixedLength()
+                .HasColumnName("SYNCOPERATION");
+            entity.Property(e => e.Syncversion)
+                .HasColumnType("datetime")
+                .HasColumnName("SYNCVERSION");
+        });
+
+        modelBuilder.Entity<Fileupload>(entity =>
+        {
+            entity.HasKey(e => e.FileName).HasName("PK__FILEUPLO__448AD0BEFB2F697B");
+
+            entity.ToTable("FILEUPLOAD");
+
+            entity.Property(e => e.FileName)
+                .HasMaxLength(200)
+                .HasColumnName("FILE_NAME");
+            entity.Property(e => e.Attachment).HasColumnName("ATTACHMENT");
+            entity.Property(e => e.CourseId)
+                .HasMaxLength(5)
+                .HasColumnName("COURSE_ID");
+            entity.Property(e => e.Syncoperation)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .IsFixedLength()
+                .HasColumnName("SYNCOPERATION");
+            entity.Property(e => e.Syncversion)
+                .HasColumnType("datetime")
+                .HasColumnName("SYNCVERSION");
+        });
+
         modelBuilder.Entity<Role>(entity =>
         {
-            entity.HasKey(e => e.RoleId).HasName("PK__ROLES__5AC4D222C3BEACBF");
+            entity.HasKey(e => e.RoleId).HasName("PK__ROLES__5AC4D222B8A62C2D");
 
             entity.ToTable("ROLES");
 

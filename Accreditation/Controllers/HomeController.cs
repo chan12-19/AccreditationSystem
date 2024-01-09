@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.EntityFrameworkCore;
 
 namespace Accreditation.Controllers
 {
@@ -35,8 +36,13 @@ namespace Accreditation.Controllers
             else
             {
                 TempData["msg"] = "Your user id or password is invalid!";
+                return View();
             }
-            return View();
+            if (accountuser.RoleId == 2)
+            {
+                return RedirectToAction("CourseList", "Home");
+            }
+            return RedirectToAction("CourseList", "Home");
         }
 
         public IActionResult Privacy()
@@ -46,7 +52,7 @@ namespace Accreditation.Controllers
 
         public IActionResult Register()
         {
-            
+
             var getRolesList = context.Roles.ToList();
             //SelectList list = new SelectList(getRolesList, "RoleId", "Roles");
             //ViewBag.RoleId = list;
@@ -82,7 +88,7 @@ namespace Accreditation.Controllers
                 TempData["msg"] = "Your email is invalid!";
                 return View();
             }
-            return View();
+            return RedirectToAction("Index", "Home");
 
         }
         
@@ -93,6 +99,16 @@ namespace Accreditation.Controllers
             return View(new AccreditationModels { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+       
+        public IActionResult CourseList()
+        {
+            
+            return View();
+        }
         
+        public IActionResult FileUpload()
+        {
+            return View();
+        }
     }
 }

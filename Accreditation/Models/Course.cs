@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Accreditation.Models;
 
@@ -26,4 +27,6 @@ public partial class Course
     public DateTime Syncversion { get; set; }
 
     public string Syncoperation { get; set; } = null!;
+
+    public IEnumerable<Course> Courses { get; set; }
 }
